@@ -1,8 +1,8 @@
 # Makefile for Twocraft
 
 CC := gcc
-CFLAGS := -g -Wall -Wextra -O2 $(sdl2-configure --cflags)
-LDFLAGS := $(sdl2-configure --libs)
+CFLAGS := -g -Wall -Wextra -O2
+LDFLAGS := -lSDL2
 SRCDIR := src
 OBJDIR := obj
 BINDIR := bin
@@ -43,5 +43,5 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(HDRS)
 $(TARGET): $(OBJS)
 	@echo "Building target $@..."
 	mkdir -p $(dir $@)
-	$(CC) $(LDFLAGS) $^ -o $@
+	$(CC) $^ -o $@ $(LDFLAGS)
 	@echo ""

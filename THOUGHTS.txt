@@ -1,0 +1,22 @@
+Ok to make twocraft using SDL i need some ideas
+
+First, i will make the game tick loop. It will also be an
+event loop.
+
+1. Process events and make whatever changes
+2. Update physics and stuff
+3. Draw to screen
+4. Send network packets (if applicable)
+
+This will be in src/loop.c.
+
+Then i need stuff to do physics *on*. 1st are blocks. Those are easy enough - they go
+in 16x16 chunks and are optimized using quadtrees (the 2d version of octrees) when sent along the network.
+
+Should i go for an optimized 1-byte-per-block, or the long-term approach of using string IDs for blocks? I can comprimise: Have an indexed way where each chunk will be stored with an 8-bit pallete of blocks and then all 64 blocks in the chunks are single blocks. Of course the pallete entries are string IDs, like "stone" or "log" or "wood". Each chunk has only 64 blocks in it, so this works even if they are all unique (256 > 64)
+
+So the chunks are done, but what about entities? they are 2d squares with velocity and a texture (possibly animated) and position in the world. Players are entities, items are, and falling blocks like sand.
+
+Blocks have no namespace, just text IDs. Items, however, are *different* from blocks. To differentaite these, you do "block:name" or "item:name". This prevents when you can /give yourself illegal blocks in original minecraft.
+
+
