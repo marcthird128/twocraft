@@ -1,0 +1,7 @@
+# Temp files
+*.swp
+
+# Builds
+obj/
+bin/
+test/

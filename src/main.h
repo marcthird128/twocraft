@@ -5,5 +5,6 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include "game_state.h"
 
 #endif
