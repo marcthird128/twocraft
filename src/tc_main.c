@@ -1,7 +1,7 @@
-// main.c
+// tc_main.c
 // Main function
 
-#include "main.h"
+#include "tc_main.h"
 
 int main() {
 	// 1. Init SDL
@@ -15,10 +15,10 @@ int main() {
 	}
 
 	// 2. Create game state
-	struct game_state state;
-	if (game_state_init(&state)) {
+	struct tc_state state;
+	if (tc_state_init(&state)) {
 		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-			"twocraft: main: game_state_init failed");
+			"twocraft: main: tc_state_init failed");
 		goto error;
 	}
 	SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION,
@@ -27,7 +27,7 @@ int main() {
 	// Shut down
 	SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION,
 		"Shutting down Twocraft...");
-	game_state_free(&state);
+	tc_state_free(&state);
 	SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION,
 		"Goodbye!");
 	return 0;

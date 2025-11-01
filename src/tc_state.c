@@ -1,9 +1,9 @@
-// game_state.c
-// game_state struct: handles game state and core stuff
+// tc_state.c
+// tc_state struct: handles game state and core stuff
 
-#include "game_state.h"
+#include "tc_state.h"
 
-int game_state_init(struct game_state* self) {
+int tc_state_init(struct tc_state* self) {
 	SDL_LogInfo(SDL_LOG_CATEGORY_APPLICATION,
 		"Initializing Twocraft...\n");
 	// 1. Create window
@@ -17,7 +17,7 @@ int game_state_init(struct game_state* self) {
 	);
 	if (self->window == NULL) {
 		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-			"twocraft: game_state_init: SDL_CreateWindow failed: %s",
+			"twocraft: tc_state_init: SDL_CreateWindow failed: %s",
 			SDL_GetError());
 		return 1;
 	}
@@ -30,7 +30,7 @@ int game_state_init(struct game_state* self) {
 	);
 	if (self->renderer == NULL) {
 		SDL_LogError(SDL_LOG_CATEGORY_APPLICATION,
-			"twocraft: game_state_init: SDL_CreateRenderer failed: %s",
+			"twocraft: tc_state_init: SDL_CreateRenderer failed: %s",
 			SDL_GetError());
 		return 2;
 	}
@@ -38,7 +38,7 @@ int game_state_init(struct game_state* self) {
 	return 0;
 }
 
-void game_state_free(struct game_state* self) {
+void tc_state_free(struct tc_state* self) {
 	if (self->renderer != NULL) {
 		SDL_DestroyRenderer(self->renderer);
 	}
